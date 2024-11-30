@@ -1,0 +1,32 @@
+name: ciphercore
+description: "A Security & Privacy Focused Operating System For Servers"
+base-image: quay.io/fedora/fedora-coreos
+image-version: stable
+modules:
+    - type: script
+      scripts:
+        - httpsmirrors.sh
+        - ciphercore-cleanup.sh
+    - type: rpm-ostree
+      install:
+        - usbguard
+        - firewalld
+        - policycoreutils-python-utils
+      remove:
+        - sudo
+    - type: files
+      files:
+        - source: system/usr
+          destination: /usr
+        - source: system/etc
+          destination: /etc
+    - type: script
+      scripts:
+        - ciphercore-cleanup.sh
+        - authselect-hardening.sh
+        - ciphercoredefaultzone.sh
+        - file-permission-hardening.sh
+        - systemd-services-hardening.sh
+        - selinux-boolean-hardening.sh
+        - suid-hardening.sh
+    - type: ciphercore-signing
