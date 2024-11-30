@@ -24,7 +24,6 @@ modules:
       scripts:
         - ciphercore-cleanup.sh
         - authselect-hardening.sh
-        - ciphercoredefaultzone.sh
         - file-permission-hardening.sh
         - systemd-services-hardening.sh
         - selinux-boolean-hardening.sh
